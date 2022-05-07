@@ -1,26 +1,40 @@
 import React from "react";
 import ProgressBar from "./ProgressBar";
 
-const Cards = ({ children }) => {
+const Cards = ({
+  heading,
+  personName,
+  jobPost,
+  type,
+  expireDate,
+  spentAmount,
+  availableAmount,
+}) => {
   return (
-    <div className="border shadow-md drop-shadow-2xl border-gray-100 p-2">
-      <div className="text-lg text-left">MixMax</div>
-      <div className="flex">
-        <div>Vishal</div>
-        <div>Software Subscription</div>
+    <div className="border shadow-md drop-shadow-2xl border-gray-100 p-4 space-y-2">
+      <div className="text-lg text-left">{heading}</div>
+      <div className="flex items-center">
+        <div>{personName}</div>
+        <i className="ri-checkbox-blank-circle-fill text-gray-400 text-xs"></i>
+        <div>{jobPost}</div>
       </div>
       <div className="flex justify-between">
-        <div>Burner</div>
-        <div>Expires:{}</div>
+        {type === "Burner" ? <div>Burner</div> : <div>Burner</div>}
+        <div>Expires:{expireDate}</div>
       </div>
       <ProgressBar />
       <div className="flex justify-between">
         <div>spent</div>
-        <div>148 SGD</div>
+        <div>
+          {spentAmount.value} {spentAmount.currency}
+        </div>
       </div>
       <div className="flex justify-between">
         <div>Available to spend</div>
-        <div>148 SGD</div>
+        <div>
+          {availableAmount?.value}
+          {availableAmount?.currency}
+        </div>
       </div>
     </div>
   );

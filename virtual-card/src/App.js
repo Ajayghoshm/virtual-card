@@ -1,13 +1,12 @@
-import logo from "./logo.svg";
 import "./App.css";
 import "./Input.css";
 import "remixicon/fonts/remixicon.css";
 import Tab from "./components/Tabs";
 import { useState } from "react";
-import { Tabs } from "./components/constant";
 import Yours from "./Pages/Yours";
 import All from "./Pages/All";
 import Blocked from "./Pages/Blocked";
+import { Tabs } from "./Pages/constant";
 
 const renderTabs = (value) => {
   switch (value) {
