@@ -1,1 +1,1 @@
-export const Tabs = ["Your", "All", "Blocked"];
+export const Tabs = ["Yours", "All", "Blocked"];
