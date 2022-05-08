@@ -2,6 +2,8 @@
 
 To install the app
  
+**cd virtual-card**
+
 **npm install**
 
 then
