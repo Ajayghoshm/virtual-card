@@ -27,3 +27,8 @@ The add virtual card is also not avilable as it was not mentioned in the task ev
 
 Heruko Link
 https://card-sample-ajay.herokuapp.com/
+
+Clarification needed:
+
+About api
+About the search logic
