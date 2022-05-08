@@ -17,7 +17,7 @@ export const MOCKVALUES = [
     status: "active",
   },
   {
-    name: "Mixmax",
+    name: "QuickBooks",
     budget_name: "Software subscription",
     owner_id: 1,
     spent: {
@@ -34,7 +34,7 @@ export const MOCKVALUES = [
     status: "active",
   },
   {
-    name: "Mixmax",
+    name: "Motion",
     budget_name: "Software subscription",
     owner_id: 1,
     spent: {
@@ -51,7 +51,7 @@ export const MOCKVALUES = [
     status: "blocked",
   },
   {
-    name: "Mixmax",
+    name: "Xero",
     budget_name: "Software subscription",
     owner_id: 2,
     spent: {
@@ -68,7 +68,7 @@ export const MOCKVALUES = [
     status: "active",
   },
   {
-    name: "Mixmax",
+    name: "Moonknight",
     budget_name: "Software subscription",
     owner_id: 2,
     spent: {

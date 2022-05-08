@@ -26,6 +26,10 @@ function App() {
   });
 
   const [activeTabs, setActiveTabs] = useState(TABS[0]);
+
+  const [searchInputValue, setSearchInputValue] = useState("");
+  const [searchEnable, setSearchEnable] = useState(false);
+
   const [filterValue, setFilterValue] = useState({
     selectedUser: "",
     type: {
@@ -65,6 +69,17 @@ function App() {
     });
   }
 
+  if (searchInputValue) {
+    FilteredCardlist = FilteredCardlist.filter((item) => {
+      return item.name.toLowerCase().includes(searchInputValue.toLowerCase());
+    });
+  }
+
+  const onSearchInputChange = (e) => {
+    e.preventDefault();
+    setSearchInputValue(e.target.value);
+  };
+
   return (
     <div className="p-8 overflow-auto App">
       <div className="flex justify-between py-6">
@@ -94,7 +109,24 @@ function App() {
       </Tab>
       <div className="flex items-center justify-end pb-4 space-x-4 ">
         <div>
-          <i className="ri-search-line"></i>
+          {searchEnable && (
+            <input
+              className="border border-gray-200"
+              value={searchInputValue}
+              onChange={(e) => onSearchInputChange(e)}
+            />
+          )}
+          {searchEnable ? (
+            <i
+              className="cursor-pointer ri-close-line"
+              onClick={() => setSearchEnable((state) => !state)}
+            ></i>
+          ) : (
+            <i
+              className="cursor-pointer ri-search-line"
+              onClick={() => setSearchEnable((state) => !state)}
+            ></i>
+          )}
         </div>
         <div className="flex px-2 space-x-2 ">
           {filterValue?.selectedUser?.label && (
