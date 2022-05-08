@@ -1,26 +1,35 @@
 import React from "react";
 import Cards from "../components/Cards";
-import ProgressBar from "../components/ProgressBar";
-import { MOCKVALUES } from "./constant";
+import { USERS } from "./constant";
 
-const Yours = () => {
+const Yours = ({ cardList }) => {
+  let userID = 1;
+  let userName = USERS.find((item) => {
+    return item.id === userID;
+  });
+  let filteredMockValues = cardList.filter((item) => {
+    return item.owner_id === userID;
+  });
   return (
-    <div className=" grid grid-flow-col grid-rows-2 gap-20 ">
-      {MOCKVALUES.map((item, index) => {
+    <>
+      {filteredMockValues.map((item, index) => {
         return (
-          <Cards
-            availableAmount={item.available_to_spend}
-            expireDate={item.expiry}
-            heading={item.name}
-            jobPost={item.budget_name}
-            personName={item.owner_id}
-            spentAmount={item.spent}
-            type={item.card_type}
-            key={item.index}
-          />
+          <div>
+            <Cards
+              availableAmount={item.available_to_spend}
+              expireDate={item.expiry}
+              heading={item.name}
+              jobPost={item.budget_name}
+              personName={userName.name}
+              spentAmount={item.spent}
+              type={item.card_type}
+              key={item.index}
+              limit={item.limit}
+            />
+          </div>
         );
       })}
-    </div>
+    </>
   );
 };
 

@@ -9,18 +9,23 @@ const Cards = ({
   expireDate,
   spentAmount,
   availableAmount,
+  limit,
 }) => {
   return (
-    <div className="border shadow-md drop-shadow-2xl border-gray-100 p-4 space-y-2">
+    <div className="p-4 space-y-2 border border-gray-100 shadow-md drop-shadow-2xl">
       <div className="text-lg text-left">{heading}</div>
-      <div className="flex items-center">
+      <div className="flex items-center space-x-1 text-center">
         <div>{personName}</div>
-        <i className="ri-checkbox-blank-circle-fill text-gray-400 text-xs"></i>
+        <i className="text-xs text-gray-400 ri-checkbox-blank-circle-fill"></i>
         <div>{jobPost}</div>
       </div>
       <div className="flex justify-between">
-        {type === "Burner" ? <div>Burner</div> : <div>Burner</div>}
-        <div>Expires:{expireDate}</div>
+        {type === "burner" ? <div>Burner</div> : <div>Subscription</div>}
+        {type === "burner" ? (
+          <div>Expires:{expireDate}</div>
+        ) : (
+          <div>August Limit:{limit}</div>
+        )}
       </div>
       <ProgressBar />
       <div className="flex justify-between">
