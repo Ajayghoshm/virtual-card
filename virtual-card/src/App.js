@@ -1,43 +1,87 @@
-import logo from "./logo.svg";
 import "./App.css";
 import "./Input.css";
 import "remixicon/fonts/remixicon.css";
 import Tab from "./components/Tabs";
-import { useState } from "react";
-import { Tabs } from "./components/constant";
+import { useEffect, useState } from "react";
 import Yours from "./Pages/Yours";
 import All from "./Pages/All";
 import Blocked from "./Pages/Blocked";
+import { MOCKVALUES, TABS, USERS } from "./Pages/constant";
+import FilterPop from "./components/FilterComponent";
 
-const renderTabs = (value) => {
+const renderTabs = (value, cardList, setFilterValue) => {
   switch (value) {
     case "Yours":
-      return <Yours />;
+      return <Yours cardList={cardList} setFilterValue={setFilterValue} />;
     case "All":
-      return <All />;
+      return <All cardList={cardList} />;
     case "Blocked":
-      return <Blocked />;
+      return <Blocked cardList={cardList} />;
   }
 };
 
 function App() {
-  const [activeTabs, setActiveTabs] = useState(Tabs[0]);
+  let userOptions = USERS.map((item) => {
+    return { label: item.name, value: item.id };
+  });
+
+  const [activeTabs, setActiveTabs] = useState(TABS[0]);
+  const [filterValue, setFilterValue] = useState({
+    selectedUser: "",
+    type: {
+      subscription: true,
+      burner: true,
+    },
+  });
+
+  useEffect(() => {
+    setFilterValue((state) => {
+      return {
+        selectedUser: "",
+        type: "",
+      };
+    });
+  }, [activeTabs]);
+
+  let FilteredCardlist = MOCKVALUES;
+
+  if (
+    filterValue?.selectedUser &&
+    filterValue?.selectedUser !== userOptions[0]
+  ) {
+    FilteredCardlist = FilteredCardlist.filter((item) => {
+      return item.owner_id === filterValue.selectedUser.value;
+    });
+  }
+
+  if (filterValue.type.burner === false) {
+    FilteredCardlist = FilteredCardlist.filter((item) => {
+      return item.card_type !== "burner";
+    });
+  }
+  if (filterValue.type.subscription === false) {
+    FilteredCardlist = FilteredCardlist.filter((item) => {
+      return item.card_type !== "subscription";
+    });
+  }
+
   return (
-    <div className="App p-8">
+    <div className="p-8 overflow-auto App">
       <div className="flex justify-between py-6">
-        <div className="flex space-x-2">
+        <div className="flex items-center space-x-2">
           <div className="font-bold">Virtual Cards</div>
-          <div className="bg-gray-100 text-center align-middle content-center ">
-            <i className="ri-vidicon-line text-blue-600"></i>
-            <span className="text-blue-600"> Learn more</span>
+          <div className="flex items-center px-2 space-x-2 text-center bg-gray-50">
+            <i className="text-blue-600 ri-vidicon-line"></i>
+            <p className="text-blue-600"> Learn more</p>
           </div>
         </div>
-        <div className="text-center">
-          <i className="ri-add-line"></i>Virtual Cards
+        <div className="flex items-center p-1 text-center border shadow-md cursor-pointer ">
+          <i className="ri-add-line"></i>
+          <p>Virtual Cards</p>
         </div>
       </div>
       <Tab>
-        {Tabs.map((item) => {
+        {TABS.map((item) => {
           return (
             <Tab.item
               key={item}
@@ -48,8 +92,32 @@ function App() {
           );
         })}
       </Tab>
-
-      {renderTabs(activeTabs)}
+      <div className="flex items-center justify-end pb-4 space-x-4 ">
+        <div>
+          <i className="ri-search-line"></i>
+        </div>
+        <div className="flex px-2 space-x-2 ">
+          {filterValue?.selectedUser?.label && (
+            <div className="px-2 bg-gray-200">
+              {filterValue?.selectedUser?.label}
+            </div>
+          )}
+          {filterValue?.type?.burner && (
+            <div className="px-2 bg-gray-200">Burner</div>
+          )}
+          {filterValue?.type?.subscription && (
+            <div className="px-2 bg-gray-200">Subscription</div>
+          )}
+        </div>
+        <FilterPop
+          setFilterValue={setFilterValue}
+          userOptions={userOptions}
+          filterValue={filterValue}
+        />
+      </div>
+      <div className="grid grid-cols-2 gap-16">
+        {renderTabs(activeTabs, FilteredCardlist, setFilterValue)}
+      </div>
     </div>
   );
 }
