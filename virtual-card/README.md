@@ -31,4 +31,3 @@ https://card-sample-ajay.herokuapp.com/
 Clarification needed:
 
 About api
-About the search logic
