@@ -28,7 +28,7 @@ The Api integration is not done as there wasn't any api service provided, just t
 The add virtual card is also not avilable as it was not mentioned in the task even though it was in the UI design given
 
 Heruko Link
-https://card-sample-ajay.herokuapp.com/
+https://virtual-card-ajay.herokuapp.com/
 
 Clarification needed:
 
