@@ -19,12 +19,20 @@ const Cards = ({
         <i className="text-xs text-gray-400 ri-checkbox-blank-circle-fill"></i>
         <div>{jobPost}</div>
       </div>
-      <div className="flex justify-between">
-        {type === "burner" ? <div>Burner</div> : <div>Subscription</div>}
+      <div className="flex justify-between ">
         {type === "burner" ? (
-          <div>Expires:{expireDate}</div>
+          <div className="px-2 text-gray-500 border border-gray-300 rounded-sm">
+            Burner
+          </div>
         ) : (
-          <div>August Limit:{limit}</div>
+          <div className="px-2 text-gray-500 border border-gray-300 rounded-sm">
+            Subscription
+          </div>
+        )}
+        {type === "burner" ? (
+          <div>{`Expires: ${expireDate}`}</div>
+        ) : (
+          <div>{`August Limit:${limit}`}</div>
         )}
       </div>
       <ProgressBar />
