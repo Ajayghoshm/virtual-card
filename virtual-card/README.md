@@ -23,5 +23,7 @@ Every UI component other than the filter popper and select component are develop
 
 The Api integration is not done as there wasn't any api service provided, just the mock api structure only, used the same in as a constant file, if need can be replaced as axios response
 
+The add virtual card is also not avilable as it was not mentioned in the task even though it was in the UI design given
+
 Heruko Link
 https://card-sample-ajay.herokuapp.com/
