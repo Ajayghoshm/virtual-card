@@ -34,15 +34,14 @@ function App() {
     },
   });
 
-  // useEffect(() => {
-  //   if (activeTabs == TABS[0])
-  //     setFilterValue((state) => {
-  //       return {
-  //         selectedUser: userOptions[1],
-  //         type: "",
-  //       };
-  //     });
-  // }, [activeTabs]);
+  useEffect(() => {
+    setFilterValue((state) => {
+      return {
+        selectedUser: "",
+        type: "",
+      };
+    });
+  }, [activeTabs]);
 
   let FilteredCardlist = MOCKVALUES;
 

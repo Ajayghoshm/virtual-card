@@ -11,9 +11,22 @@ const Cards = ({
   availableAmount,
   limit,
 }) => {
+  const percentageCalculation =
+    (spentAmount.value / availableAmount.value) * 100;
+  console.debug("cel", percentageCalculation);
+
   return (
     <div className="p-4 space-y-2 border border-gray-100 shadow-md drop-shadow-2xl">
-      <div className="text-lg text-left">{heading}</div>
+      <div className="flex justify-between">
+        <div className="text-lg text-left">{heading}</div>
+        <div className="px-6 py-4 text-2xl text-pink-500 rounded-full shadow-sm bg-pink-50">
+          {type === "burner" ? (
+            <i className="ri-fire-line" />
+          ) : (
+            <i className="ri-recycle-line"></i>
+          )}
+        </div>
+      </div>
       <div className="flex items-center space-x-1 text-center">
         <div>{personName}</div>
         <i className="text-xs text-gray-400 ri-checkbox-blank-circle-fill"></i>
@@ -35,7 +48,7 @@ const Cards = ({
           <div>{`August Limit:${limit}`}</div>
         )}
       </div>
-      <ProgressBar />
+      <ProgressBar percentageCalculation={percentageCalculation} />
       <div className="flex justify-between">
         <div>spent</div>
         <div>

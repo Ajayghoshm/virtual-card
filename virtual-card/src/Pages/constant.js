@@ -55,11 +55,11 @@ export const MOCKVALUES = [
     budget_name: "Software subscription",
     owner_id: 2,
     spent: {
-      value: 100,
+      value: 50,
       currency: "SGD",
     },
     available_to_spend: {
-      value: 1000,
+      value: 100,
       currency: "SGD",
     },
     card_type: "burner",

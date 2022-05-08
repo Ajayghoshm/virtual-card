@@ -1,9 +1,11 @@
 import classNames from "classnames";
 import React from "react";
 
-const ProgressBar = ({ width = 50 }) => {
+const ProgressBar = ({ percentageCalculation }) => {
+  console.debug("perce", percentageCalculation);
+  let width = percentageCalculation;
   return (
-    <div className="h-3 w-full bg-green-400 flex rounded-md">
+    <div className="flex w-full h-3 bg-green-400 rounded-md">
       <div
         className={classNames(["bg-red-500 rounded-md"])}
         style={{ width: `${width}%` }}
